@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<h2>Users</h2>
+<div>
+    <div class="grid-style" data-ng-grid="userGrid">
+    </div>
+    <div class="user-details" data-ng-show="selectedUser">
+        <div class="well well-large">
+            <h3>User Details</h3>
+            <form>
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" data-ng-model="selectedUser.firstName" />
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" data-ng-model="selectedUser.lastName" />
+                <label for="gender">Gender</label>
+                <input type="radio" id="male" name="gender" data-ng-checked="!selectedUser.gender" /><span class="gender-text">Male</span>
+                <input type="radio" id="female" name="gender" data-ng-checked="selectedUser.gender" /><span class="gender-text">Female</span><br />
+                <br />
+                <label for="mobile">Mobile</label>
+                <input type="tel" id="mobile" name="mobile" data-ng-model="selectedUser.mobile" />
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" data-ng-model="selectedUser.email" />
+                <label for="country">Country</label>
+                <select id="country" name="country" data-ng-model="selectedUser.country" data-ng-options="c.id as c.name for c in countryList"></select>
+                <label for="state">State</label>
+                <select id="state" name="state" data-ng-model="selectedUser.state" data-ng-change="clearCityAndZip();" data-ng-options="s.id as s.name for s in countryList[0].states"></select>
+                <label for="city">City</label>
+                <select id="city" name="city" data-ng-model="selectedUser.city" data-ng-options="c.id as c.name for c in selectedState.cities">
+                    <option value="" selected="selected">Select City</option>
+                </select>
+                <label for="zip">Zip</label>
+                <input type="text" id="zip" name="zip" data-ng-model="selectedUser.zip" /><br />
+                <input type="button" id="btnSubmit" class="btn" data-ng-click="updateUser(selectedUser)" value="UPDATE" />
+            </form>
+        </div>
+
+    </div>
+</div>
